@@ -3,7 +3,7 @@
 **By: Muhammad Khizer Javed (SecurityBreached.org)**  
 *Website: [whoami.securitybreached.org](https://whoami.securitybreached.org/)*
 
-PlayRetrieve is a command-line Python script that allows you to download Android application packages (APKs), including split APKs, directly using a Google Play Store URL. It interfaces with the API used by [apkdownloader.pages.dev](https://apkdownloader.pages.dev/) to fetch download links.
+PlayRetrieve is a command-line Python script that allows you to download Android application packages (APKs), including split APKs, directly using a Google Play Store URL. It interfaces with the API used by [apk.ad](https://apk.ad/) to fetch download links.
 
 The tool can download individual APK files (latest or specific versions) and optionally package multiple split APKs into a single `.apks` (APK Set) or `.xapk` archive for convenient installation. It also supports batch processing of URLs, app availability checks, and listing available app versions.
 
