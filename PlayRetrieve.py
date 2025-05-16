@@ -20,6 +20,7 @@ from datetime import datetime
 TOKEN_URL = "https://token.apk.ad/"
 API_URL = "https://api.apk.ad/get"
 GET_VERSION_URL = "https://api.apk.ad/get-version"
+PLAY_URL = "https://play.google.com/store/apps/details?id="
 OUTPUT_BASE_DIR = "apk_downloads"
 TOOL_NAME = "PlayRetrieve"
 TOOL_VERSION = "1.1"
@@ -66,7 +67,7 @@ PROC_SKIPPED_EXISTING = "SKIPPED_EXISTING"
 PROC_FAILED = "FAILED"
 
 def extract_package_id(play_store_url):
-    if not play_store_url or not play_store_url.startswith("https://play.google.com/store/apps/details?id="):
+    if not play_store_url or not play_store_url.startswith(PLAY_URL):
         return None
     parsed_url = urlparse(play_store_url)
     if parsed_url.netloc not in ["play.google.com", "www.play.google.com"]:
@@ -427,6 +428,7 @@ def main():
     )
     input_group = parser.add_mutually_exclusive_group(required=True)
     input_group.add_argument("--url", help="Single Google Play Store URL")
+    input_group.add_argument("--package", help="Application Package")
     input_group.add_argument("-if", "--input-file", dest="input_file", help="Path to a text file containing Google Play URLs (one per line)")
     action_group = parser.add_mutually_exclusive_group(required=False)
     action_group.add_argument("-lv", "--list-versions", action="store_true", help="List available versions for the app(s).")
@@ -460,6 +462,8 @@ def main():
         except Exception as e: print(f"[!] Error reading input file '{args.input_file}': {e}"); return
     elif args.url:
         urls_to_process.append(args.url)
+    elif args.package:
+        urls_to_process.append(f"{PLAY_URL}{args.package}")
     successful_ops, failed_ops, skipped_ops = 0, 0, 0
     last_op_involved_network = True
     for i, play_url in enumerate(urls_to_process):
