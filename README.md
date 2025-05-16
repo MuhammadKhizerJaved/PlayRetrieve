@@ -5,11 +5,13 @@
 
 PlayRetrieve is a command-line Python script that allows you to download Android application packages (APKs), including split APKs, directly using a Google Play Store URL. It interfaces with the API used by [apkdownloader.pages.dev](https://apkdownloader.pages.dev/) to fetch download links.
 
-The tool can download individual APK files and optionally package multiple split APKs into a single `.apks` (APK Set) or `.xapk` archive for convenient installation using compatible installers like SAI (Split APKs Installer). It also supports batch processing of URLs from an input file and can check app availability without downloading.
+The tool can download individual APK files (latest or specific versions) and optionally package multiple split APKs into a single `.apks` (APK Set) or `.xapk` archive for convenient installation. It also supports batch processing of URLs, app availability checks, and listing available app versions.
 
 ## Features
 
-* Download APKs and Split APKs using a Google Play Store URL.
+* Download latest or specific versions of APKs/Split APKs using a Google Play Store URL.
+* List available historical versions of an app (with version codes, names, update times, and sizes).
+* Download a specific app version using its **Version Code**.
 * Batch processing of multiple URLs from a text file.
 * Optionally package downloaded split APKs into:
   * `.apks` (APK Set archive)
@@ -31,26 +33,29 @@ python PlayRetrieve.py [ARGUMENT_GROUP] [OPTIONS]
  |  _/ / _` | || |   / -_)  _| '_| / -_) V / -_)
  |_| |_\__,_|\_, |_|_\___|\__|_| |_\___|\_/\___|
              |__/
-              PlayRetrieve v1.0
+              PlayRetrieve v1.1
 Muhammad Khizer Javed | whoami.securitybreached.org
 ----------------------------------------------------
 
-usage: PlayRetrieve.py [-h] (--url URL | -if INPUT_FILE) [--device DEVICE] [--arch ARCH] [-uf {apks,xapk}] [--check] [-v] [--delay DELAY] [--version]
+usage: PlayRetrieve1.py [-h] (--url URL | -if INPUT_FILE) [-lv | -dv VERSION_CODE] [--device DEVICE] [--arch ARCH] [-uf {apks,xapk}] [--check] [-v] [--delay DELAY] [--version]
 
-PlayRetrieve v1.0 - Downloads APKs/Split APKs.
+PlayRetrieve v1.1 - Downloads APKs/Split APKs.
 
 options:
   -h, --help            show this help message and exit
   --url URL             Single Google Play Store URL
   -if, --input-file INPUT_FILE
                         Path to a text file containing Google Play URLs (one per line)
+  -lv, --list-versions  List available versions for the app(s).
+  -dv, --download-version VERSION_CODE
+                        Download a specific version by its Version Code.
   --device DEVICE       Device type (Default: phone)
   --arch ARCH           Architecture (Default: arm64-v8a)
   -uf, --universal-format {apks,xapk}
                         Archive format
-  --check               Only check app availability, no download
+  --check               Modifier: Only check app availability (for latest or specified -dv), no download.
   -v, --verbose         Enable verbose output.
-  --delay DELAY         Delay in seconds between processing URLs in batch mode (Default: 5)
+  --delay DELAY         Delay in seconds between processing URLs in batch mode (Default: 11)
   --version             show program's version number and exit
 ```
 
@@ -59,6 +64,16 @@ options:
 **Download APKs for a single app:**  
 ```
 python PlayRetrieve.py --url "https://play.google.com/store/apps/details?id=com.binance.dev"
+```
+
+**List available versions for an app:**  
+```
+python PlayRetrieve.py --url "https://play.google.com/store/apps/details?id=com.binance.dev -lv"
+```
+
+**Download a specific version of an app using its Version Code (e.g., VC 123):**  
+```
+python PlayRetrieve.py --url "https://play.google.com/store/apps/details?id=com.binance.dev" -dv 123
 ```
 
 **Download and create an .apks archive:**  
@@ -97,6 +112,10 @@ By default, if the user doesn't specify the `--delay` argument, it's set to **11
 ![https://raw.githubusercontent.com/MuhammadKhizerJaved/PlayRetrieve/refs/heads/main/images/help.png](https://raw.githubusercontent.com/MuhammadKhizerJaved/PlayRetrieve/refs/heads/main/images/help.png)
 
 ![https://raw.githubusercontent.com/MuhammadKhizerJaved/PlayRetrieve/refs/heads/main/images/down_single_url.png](https://raw.githubusercontent.com/MuhammadKhizerJaved/PlayRetrieve/refs/heads/main/images/down_single_url.png)
+
+![https://raw.githubusercontent.com/MuhammadKhizerJaved/PlayRetrieve/refs/heads/main/images/List-Versions.png](https://raw.githubusercontent.com/MuhammadKhizerJaved/PlayRetrieve/refs/heads/main/images/List-Versions.png)
+
+![https://raw.githubusercontent.com/MuhammadKhizerJaved/PlayRetrieve/refs/heads/main/images/Download-Specific-Version.png](https://raw.githubusercontent.com/MuhammadKhizerJaved/PlayRetrieve/refs/heads/main/images/Download-Specific-Version.png)
 
 ![https://raw.githubusercontent.com/MuhammadKhizerJaved/PlayRetrieve/refs/heads/main/images/download_multiple_apps.png](https://raw.githubusercontent.com/MuhammadKhizerJaved/PlayRetrieve/refs/heads/main/images/download_multiple_apps.png)
 
