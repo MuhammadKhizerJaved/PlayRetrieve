@@ -92,6 +92,16 @@ python PlayRetrieve.py --url "https://play.google.com/store/apps/details?id=com.
 
 By default, if the user doesn't specify the `--delay` argument, it's set to **11 seconds**.
 
+### Demo
+
+![https://raw.githubusercontent.com/MuhammadKhizerJaved/PlayRetrieve/refs/heads/main/images/help.png](https://raw.githubusercontent.com/MuhammadKhizerJaved/PlayRetrieve/refs/heads/main/images/help.png)
+
+![https://raw.githubusercontent.com/MuhammadKhizerJaved/PlayRetrieve/refs/heads/main/images/down_single_url.png](https://raw.githubusercontent.com/MuhammadKhizerJaved/PlayRetrieve/refs/heads/main/images/down_single_url.png)
+
+![https://raw.githubusercontent.com/MuhammadKhizerJaved/PlayRetrieve/refs/heads/main/images/download_multiple_apps.png](https://raw.githubusercontent.com/MuhammadKhizerJaved/PlayRetrieve/refs/heads/main/images/download_multiple_apps.png)
+
+![https://raw.githubusercontent.com/MuhammadKhizerJaved/PlayRetrieve/refs/heads/main/images/archieve_apps.png](https://raw.githubusercontent.com/MuhammadKhizerJaved/PlayRetrieve/refs/heads/main/images/archieve_apps.png)
+
 ## Disclaimer
 
 This tool depends on a third-party API. If the API changes, breaks, or becomes unavailable, the script may fail. Use it responsibly.
