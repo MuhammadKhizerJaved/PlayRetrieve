@@ -103,6 +103,24 @@ python PlayRetrieve.py --input-file my_apps.txt
 python PlayRetrieve.py --url "https://play.google.com/store/apps/details?id=com.binance.dev" -uf xapk
 ```
 
+### Options:
+
+**Devices:**
+```
+tv
+tablet
+watch
+phone
+```
+
+**Architecture:**
+```
+arm64-v8a
+armeabi-v7a
+x86
+x86_64
+```
+
 ## Batch Processing Delay
 
 By default, if the user doesn't specify the `--delay` argument, it's set to **11 seconds**.
