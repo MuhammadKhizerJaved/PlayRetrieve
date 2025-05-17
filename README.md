@@ -37,13 +37,14 @@ python PlayRetrieve.py [ARGUMENT_GROUP] [OPTIONS]
 Muhammad Khizer Javed | whoami.securitybreached.org
 ----------------------------------------------------
 
-usage: PlayRetrieve1.py [-h] (--url URL | -if INPUT_FILE) [-lv | -dv VERSION_CODE] [--device DEVICE] [--arch ARCH] [-uf {apks,xapk}] [--check] [-v] [--delay DELAY] [--version]
+usage: PlayRetrieve1.py [-h] (--url URL | --package PACKAGE | -if INPUT_FILE) [-lv | -dv VERSION_CODE] [--device DEVICE] [--arch ARCH] [-uf {apks,xapk}] [--check] [-v] [--delay DELAY] [--version]
 
 PlayRetrieve v1.1 - Downloads APKs/Split APKs.
 
 options:
   -h, --help            show this help message and exit
   --url URL             Single Google Play Store URL
+  --package PACKAGE     Application Package
   -if, --input-file INPUT_FILE
                         Path to a text file containing Google Play URLs (one per line)
   -lv, --list-versions  List available versions for the app(s).
@@ -64,6 +65,11 @@ options:
 **Download APKs for a single app:**  
 ```
 python PlayRetrieve.py --url "https://play.google.com/store/apps/details?id=com.binance.dev"
+```
+
+**Download APKs for a single app by Package Name:**  
+```
+python PlayRetrieve.py --package com.binance.dev
 ```
 
 **List available versions for an app:**  
