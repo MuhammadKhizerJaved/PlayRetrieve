@@ -3,12 +3,13 @@
 **By: Muhammad Khizer Javed (SecurityBreached.org)**  
 *Website: [whoami.securitybreached.org](https://whoami.securitybreached.org/)*
 
-PlayRetrieve is a command-line Python script that allows you to download Android application packages (APKs), including split APKs, directly using a Google Play Store URL. It interfaces with the API used by [apk.ad](https://apk.ad/) to fetch download links.
+PlayRetrieve is a command-line Python script that allows you to download Android application packages (APKs, XAPKs, Split APKs), including specific historical versions, directly using Google Play Store URLs or package IDs. It now robustly interfaces with the API used by **mi9.com** (derived from the previous apkdownloader.pages.dev service) to fetch download links.
 
-The tool can download individual APK files (latest or specific versions) and optionally package multiple split APKs into a single `.apks` (APK Set) or `.xapk` archive for convenient installation. It also supports batch processing of URLs, app availability checks, and listing available app versions.
+The tool can download individual files (latest or specific versions) and optionally package multiple split APKs into a single `.apks` (APK Set) or `.xapk` archive. It supports batch processing, app availability checks, and listing available app versions.
 
 ## Features
 
+# **Reliable Downloads:** Uses the current mi9 API for fetching all app types, including `.xapk` and `.zip` files
 * Download latest or specific versions of APKs/Split APKs using a Google Play Store URL.
 * List available historical versions of an app (with version codes, names, update times, and sizes).
 * Download a specific app version using its **Version Code**.
@@ -28,35 +29,41 @@ python PlayRetrieve.py [ARGUMENT_GROUP] [OPTIONS]
 ## Help
 
 ```
+python PlayRetrieve.py --help
+
+
   ___ _           ___     _       _
  | _ \ |__ _ _  _| _ \___| |_ _ _(_)_____ _____
  |  _/ / _` | || |   / -_)  _| '_| / -_) V / -_)
  |_| |_\__,_|\_, |_|_\___|\__|_| |_\___|\_/\___|
              |__/
-              PlayRetrieve v1.1
+              PlayRetrieve v1.7.1
 Muhammad Khizer Javed | whoami.securitybreached.org
 ----------------------------------------------------
 
-usage: PlayRetrieve1.py [-h] (--url URL | --package PACKAGE | -if INPUT_FILE) [-lv | -dv VERSION_CODE] [--device DEVICE] [--arch ARCH] [-uf {apks,xapk}] [--check] [-v] [--delay DELAY] [--version]
+usage: PlayRetrieve2.py [-h] (--url URL | -p PACKAGE_ID_ARG | -if INPUT_FILE) [-lv | -dv VERSION_CODE] [--device DEVICE] [--arch ARCH] [--sdk SDK_VERSION] [-uf {apks,xapk}] [--check]
+                        [-v] [--delay DELAY] [--version]
 
-PlayRetrieve v1.1 - Downloads APKs/Split APKs.
+PlayRetrieve v1.7.1 - Downloads APKs/Split APKs.
 
 options:
   -h, --help            show this help message and exit
   --url URL             Single Google Play Store URL
-  --package PACKAGE     Application Package
+  -p, --package PACKAGE_ID_ARG
+                        Direct package ID (e.g., com.example.app)
   -if, --input-file INPUT_FILE
-                        Path to a text file containing Google Play URLs (one per line)
+                        Path to a text file containing Google Play URLs or package IDs (one per line)
   -lv, --list-versions  List available versions for the app(s).
   -dv, --download-version VERSION_CODE
                         Download a specific version by its Version Code.
   --device DEVICE       Device type (Default: phone)
   --arch ARCH           Architecture (Default: arm64-v8a)
+  --sdk SDK_VERSION     Target SDK version for API requests (e.g., 30). If not set, API's default is used (Current API default: 30).
   -uf, --universal-format {apks,xapk}
                         Archive format
-  --check               Modifier: Only check app availability (for latest or specified -dv), no download.
+  --check               Modifier: Only check app availability, no download.
   -v, --verbose         Enable verbose output.
-  --delay DELAY         Delay in seconds between processing URLs in batch mode (Default: 11)
+  --delay DELAY         Delay in seconds between processing URLs/packages in batch mode (Default: 9)
   --version             show program's version number and exit
 ```
 
@@ -97,6 +104,7 @@ Create `my_apps.txt` with:
 ```
 https://play.google.com/store/apps/details?id=com.twitter.android
 https://play.google.com/store/apps/details?id=com.whatsapp
+com.zong.customercare
 ```
 
 Then run:  
